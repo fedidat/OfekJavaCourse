@@ -31,3 +31,22 @@ ext {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-test'
 }
+
+task bootRunB(type: BootRun, dependsOn: 'build') {
+	group = 'Application'
+
+	doFirst() {
+		main = bootJar.mainClassName
+		classpath = sourceSets.main.runtimeClasspath
+		systemProperty 'spring.profiles.active', 'B'
+	}
+}
+task bootRunC(type: BootRun, dependsOn: 'build') {
+	group = 'Application'
+
+	doFirst() {
+		main = bootJar.mainClassName
+		classpath = sourceSets.main.runtimeClasspath
+		systemProperty 'spring.profiles.active', 'C'
+	}
+}
